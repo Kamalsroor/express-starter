@@ -22,6 +22,7 @@ module.exports ={
         }else{
             password = sha256(password)
             u = await User.create({emailId, password, name})
+
             let data = {
                 name : u.name,
                 token : jwt.encode({userId : u.id.toString(), time : new Date().getTime()}, secret)

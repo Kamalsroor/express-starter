@@ -55,11 +55,11 @@ const authMiddleware = require('./middlewares/auth');
 
 //loading db config values
 const dbConfig = require('./config/db');
-
-
 // connecting with mongo db with mongoose, this will connect your server with mongo database
 (async () => {
     try {
+		mongoose.set('strictQuery', false);
+
         await mongoose.connect(dbConfig.url, dbConfig.options);
         console.log("db connected")
     } catch (err) {

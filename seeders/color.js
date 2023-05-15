@@ -1,4 +1,4 @@
-const Color = require('../models/Color');
+const Color = require('../app/models/Color');
 const seedCollection = require('./seeder');
 
 

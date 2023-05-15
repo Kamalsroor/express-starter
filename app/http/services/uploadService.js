@@ -1,6 +1,6 @@
 const _ = require('lodash')
 var AWS = require('aws-sdk')
-const awsConfig = require('../config/aws');
+const awsConfig = require('../../../config/aws');
 
 
 module.exports ={

@@ -6,7 +6,7 @@ module.exports = function(name) {
 
 
   
-  const filePath = './api/index.js';
+  const filePath = './routes/index.js';
 
   const comment = '// here add route in make crud command';
   const requireComment = '// here add require in make crud command';
@@ -24,7 +24,7 @@ module.exports = function(name) {
 
    position = data.indexOf(requireComment)  - 1 ;
 
-   content = `\n const ${pluralize(name.toLowerCase(), 2)}Route = require('../services/${name.charAt(0).toLowerCase() + name.slice(1)}Service');`;
+   content = `\n const ${pluralize(name.toLowerCase(), 2)}Route = require('../app/http/services/${name.charAt(0).toLowerCase() + name.slice(1)}Service');`;
 
    newData = [newData.slice(0, position), content, newData.slice(position)].join('');
 

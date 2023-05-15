@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 
 
 const asyncHandler = require('express-async-handler')
-const UploadService = require('../services/uploadService')
+const UploadService = require('../app/http/services/uploadService')
 
 
 router.post('/image', asyncHandler((req, res, next) => {return UploadService.updloadSingleFileToS3(req, res)}))

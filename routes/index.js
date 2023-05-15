@@ -4,10 +4,10 @@ const app = express();
 
 const userRoute = require('./user');
 // const customerRoute = require('./customer');
-const customerRoute = require('../services/customerService');
-const employeeRoute = require('../services/employeeService');
-const expenseRoute = require('../services/expenseService');
-const ReceiptInvoicesRoute = require('../services/receiptInvoicesService');
+const customerRoute = require('../app/http/services/customerService');
+const employeeRoute = require('../app/http/services/employeeService');
+const expenseRoute = require('../app/http/services/expenseService');
+const ReceiptInvoicesRoute = require('../app/http/services/receiptInvoicesService');
 
 
 // here add require in make crud command

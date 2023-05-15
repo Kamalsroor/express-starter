@@ -95,7 +95,7 @@ app.all('*', authMiddleware.checkAuthToken)
 
 
 //adding all api routes to app
-const v1 = require('./api');
+const v1 = require('./routes');
 app.use('/', v1)
 
 //adding error middleware that will return error message incase of server error

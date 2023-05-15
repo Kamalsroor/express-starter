@@ -8,7 +8,7 @@ module.exports = function(name) {
   const serviceName = name.charAt(0).toUpperCase() + name.slice(1); // Capitalize first letter of service name
   const serviceFileName = `${LowerServiceName}Service.js`;
   const templatePath = './commands/stubs/service.stub';
-  const outputPath = `./services/${serviceFileName}`;
+  const outputPath = `./app/http/services/${serviceFileName}`;
 
   fs.readFile(templatePath, 'utf-8', (err, data) => {
     if (err) throw err;

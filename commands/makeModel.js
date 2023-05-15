@@ -8,7 +8,7 @@ module.exports = function(name) {
     const modelName = name.charAt(0).toUpperCase() + name.slice(1); // Capitalize first letter of model name
     const modelFileName = `${modelName}.js`;
     const templatePath = './commands/stubs/model.stub';
-    const outputPath = `./models/${modelFileName}`;
+    const outputPath = `./app/models/${modelFileName}`;
 
     fs.readFile(templatePath, 'utf-8', (err, data) => {
       if (err) throw err;

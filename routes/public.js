@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const asyncHandler = require('express-async-handler')
-const PublicService = require('../services/publicService');
+const PublicService = require('../app/http/services/publicService');
 
 
 router.get('/', function(req, res, next) {

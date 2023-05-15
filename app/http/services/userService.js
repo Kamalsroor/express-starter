@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const User = require("../../models/User")
 const jwt = require('jwt-simple');
 const secret = process.env.JWT_SECRET;
 const sha256 = require('sha256')

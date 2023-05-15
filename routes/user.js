@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 
 
 const asyncHandler = require('express-async-handler')
-const UserService = require('../services/userService');
+const UserService = require('../app/http/services/userService');
 
 
 

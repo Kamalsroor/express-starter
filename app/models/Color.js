@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const baseModel = require('./helpers/baseModel');
+const CustomValidator = require('./helpers/CustomValidator');
+const ColorRequest = require('../http/requests/ColorRequest');
 
 var newSchema = new Schema({
   'name': {
@@ -17,6 +19,7 @@ var newSchema = new Schema({
   { timestamps: true });
 
   baseModel(newSchema);
+  CustomValidator(newSchema , ColorRequest);
 
 
 

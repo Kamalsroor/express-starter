@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const baseModel = require('./helpers/baseModel');
+const CustomValidator = require('./helpers/CustomValidator');
+const ExpenseRequest = require('../http/requests/ExpenseRequest');
 
 var newSchema = new Schema({
   'price': {
@@ -32,6 +34,7 @@ var newSchema = new Schema({
   { timestamps: true });
 
   baseModel(newSchema);
+  CustomValidator(newSchema,ExpenseRequest);
 
 
 

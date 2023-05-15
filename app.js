@@ -48,9 +48,9 @@ if(dev){
 // middleware js is a function that will have all the access for requesting an object, responding to an object, and moving to the next middleware function in the application request-response cycle.
 
 //loading middlewares
-const errorMiddlewares = require('./middlewares/error');
-const apiResponseMiddleware = require('./middlewares/response');
-const authMiddleware = require('./middlewares/auth');
+const errorMiddlewares = require('./app/http/middlewares/error');
+const apiResponseMiddleware = require('./app/http/middlewares/response');
+const authMiddleware = require('./app/http/middlewares/auth');
 
 
 //loading db config values

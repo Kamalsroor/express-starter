@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const baseModel = require('./helpers/baseModel');
+const CustomValidator = require('./helpers/CustomValidator');
+const CustomerRequest = require('../http/requests/CustomerRequest');
 
 var newSchema = new Schema({
   'name': {
@@ -46,7 +48,15 @@ newSchema.set('toObject', { virtuals: true });
 newSchema.set('toJSON', { virtuals: true });
 
 
-  baseModel(newSchema);
+
+
+
+baseModel(newSchema);
+CustomValidator(newSchema , CustomerRequest);
+
+
+
+
 
 
 module.exports = mongoose.model('Customer', newSchema);

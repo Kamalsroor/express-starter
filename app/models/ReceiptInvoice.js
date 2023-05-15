@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const baseModel = require('./helpers/baseModel');
+const CustomValidator = require('./helpers/CustomValidator');
+const ReceiptInvoiceRequest = require('../http/requests/ReceiptInvoiceRequest');
 
 var newSchema = new Schema({
   'quantity': {
@@ -33,5 +35,6 @@ var newSchema = new Schema({
   { timestamps: true });
 
   baseModel(newSchema);
+  CustomValidator(newSchema,ReceiptInvoiceRequest);
 
 module.exports = mongoose.model('ReceiptInvoice', newSchema);

@@ -1,5 +1,5 @@
 const Customer = require("../models/Customer")
-const CRUD = require('./crudServcice');
+const CRUD = require('./crudService');
     
 
 const customerService = new CRUD(Customer , 'customers');

@@ -16,7 +16,7 @@ class CRUD {
         try {
             const docs = await this.model.find().pagination(req);
             res.apiSuccess(docs)
-            } catch (err) {
+        } catch (err) {
             res.status(500).apiError(err.message);
         }
     }
@@ -43,7 +43,7 @@ class CRUD {
 
     update = async (req, res) => {
         try {
-            const doc = await this.model.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators : true});
+            const doc = await this.model.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
             res.status(200).apiSuccess(doc);
         } catch (err) {
             res.status(500).apiError(err.message);

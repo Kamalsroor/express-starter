@@ -1,0 +1,10 @@
+const {{serviceName}} = require("../models/{{serviceName}}")
+const CRUD = require('./crudService');
+    
+
+const {{serviceName}}Service = new CRUD({{serviceName}} , '{{serviceName}}s');
+
+
+
+module.exports = {{serviceName}}Service;
+

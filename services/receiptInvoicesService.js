@@ -1,5 +1,5 @@
 const ReceiptInvoice = require("../models/ReceiptInvoice")
-const CRUD = require('./crudServcice');
+const CRUD = require('./crudService');
 const Color = require('../models/Color');
 
 

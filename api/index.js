@@ -9,6 +9,10 @@ const employeeRoute = require('../services/employeeService');
 const expenseRoute = require('../services/expenseService');
 const ReceiptInvoicesRoute = require('../services/receiptInvoicesService');
 
+
+// here add require in make crud command
+
+
 const publicRoute = require('./public');
 const uploadRoute = require('./upload');
 
@@ -18,6 +22,10 @@ app.use('/user', userRoute)
 app.use('/customers', customerRoute.router)
 app.use('/employees', employeeRoute.router)
 app.use('/expenses', expenseRoute.router)
+
+// here add route in make crud command
+
+
 app.use('/receipt-invoices', ReceiptInvoicesRoute.router)
 app.use('/public', publicRoute)
 app.use('/upload', uploadRoute)

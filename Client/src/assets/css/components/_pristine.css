@@ -3,3 +3,6 @@
         @apply border-danger dark:border-danger/70;
     }
 }
+:root {
+    --vs-dropdown-z-index: 500000;
+}

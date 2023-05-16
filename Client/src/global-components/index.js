@@ -8,6 +8,8 @@ import TomSelect from "./tom-select/Main.vue";
 import LoadingIcon from "./loading-icon/Main.vue";
 import TinySlider from "./tiny-slider/Main.vue";
 import ClassicEditor from "./ckeditor/ClassicEditor.vue";
+import SelectField from './input-field/Select.vue'
+
 // import BalloonBlockEditor from './ckeditor/BalloonBlockEditor.vue'
 // import BalloonEditor from './ckeditor/BalloonEditor.vue'
 // import DocumentEditor from './ckeditor/DocumentEditor.vue'
@@ -63,6 +65,7 @@ export default (app) => {
   app.component("Notification", Notification);
   app.component("Modal", Modal);
   app.component("ModalHeader", ModalHeader);
+  app.component("SelectField", SelectField);
   app.component("ModalBody", ModalBody);
   app.component("ModalFooter", ModalFooter);
   app.component("Dropdown", Dropdown);

@@ -12,7 +12,6 @@ var newSchema = new Schema({
     default: 0
   },
   'color': {
-    type: String,
     required: [true, "Color is required."],
     type: mongoose.Types.ObjectId,
     ref: "Color"
@@ -33,6 +32,32 @@ var newSchema = new Schema({
  }
 },
   { timestamps: true });
+
+    
+/**
+ * @action Defined Schema Virtual
+ * @keys 
+ *    1.   The first parameter can be named anything.
+ *          It defines the name of the key to be named on the Schema
+ * 
+ *    2. Options Object
+ *       ref: Model name for Child collection
+ *       localField: Key for reference id, stored on Child Doc, as named on Parent Doc.
+ *       foreignField: Key name that holds localField value on Child Document
+ */
+// newSchema.virtual('customer', {
+//   ref: 'Customer', //The Model to use
+//   localField: '_id', //Find in Model, where localField 
+//   foreignField: 'coustomerId', // is equal to foreignField
+// });
+
+// Set Object and Json property to true. Default is set to false
+newSchema.set('toObject', { virtuals: true });
+newSchema.set('toJSON', { virtuals: true });
+
+
+
+
 
   baseModel(newSchema);
   CustomValidator(newSchema,ReceiptInvoiceRequest);

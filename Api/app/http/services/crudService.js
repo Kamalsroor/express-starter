@@ -14,6 +14,7 @@ class CRUD {
 
     getAll = async (req, res) => {
         try {
+            
             const docs = await this.model.find().pagination(req);
             res.apiSuccess(docs)
         } catch (err) {

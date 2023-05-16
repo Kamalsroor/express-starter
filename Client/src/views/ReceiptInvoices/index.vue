@@ -1,8 +1,8 @@
 <template>
-    <h2 class="intro-y text-lg font-medium mt-10">العملاء</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">فواتير الاستلام</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <router-link :to="{ name: 'customersCreate' }" class="btn btn-primary shadow-md mr-2">اضافة عميل</router-link>
+            <router-link :to="{ name: 'ReceiptInvoicesCreate' }" class="btn btn-primary shadow-md mr-2">اضافة فاتورة جديدة</router-link>
             <!-- <Dropdown>
                 <DropdownToggle class="btn px-2 box">
                     <span class="w-5 h-5 flex items-center justify-center">
@@ -41,18 +41,18 @@
                 <thead>
                     <tr>
                         <!-- <th class="whitespace-nowrap">IMAGES</th> -->
-                        <th class="whitespace-nowrap">id</th>
-                        <th class="whitespace-nowrap">الاسم</th>
-                        <th class="whitespace-nowrap">رقم الهاتف</th>
-                        <th class="whitespace-nowrap">البريد الاكتروني</th>
-                        <th class="whitespace-nowrap">اجمالي المتاح</th>
+                        <th class="whitespace-nowrap">#</th>
+                        <th class="whitespace-nowrap">العميل</th>
+                        <th class="whitespace-nowrap">اللون</th>
+                        <th class="whitespace-nowrap">الكمية</th>
+                        <th class="whitespace-nowrap">تاريخ الاستلام</th>
                         <!-- <th class="whitespace-nowrap">SLUG</th> -->
                         <!-- <th class="text-center whitespace-nowrap">STATUS</th> -->
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody v-if="!loading">
-                    <tr v-for="(customer, Key) in customers" :key="Key" class="intro-x">
+                    <tr v-for="(receiptInvoice, Key) in receiptInvoices" :key="Key" class="intro-x">
                         <!-- <td class="w-40">
                             <div class="flex">
                                 <div class="w-10 h-10 image-fit zoom-in">
@@ -69,23 +69,28 @@
                                 </div>
                             </div>
                         </td> -->
-                        <td class="font-medium whitespace-nowrap">{{ customer._id }}</td>
+                        <td class="font-medium whitespace-nowrap">
+                            {{ receiptInvoice.id }}
+                            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                created At: {{ $h.timeAgo(receiptInvoice.createdAt)}}
+                            </div>
+                        </td>
 
                         <td>
                             <a href="" class="font-medium whitespace-nowrap">{{
-                                customer.name
+                                receiptInvoice.coustomerId?.name
                             }}</a>
-                            <!-- <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                Tags: {{ faker.customers[0].tags }}
-                            </div> -->
+                            <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                phone: {{ receiptInvoice.coustomerId?.phone }}
+                            </div>
                         </td>
-                        <td class="font-medium whitespace-nowrap">{{ customer.phone }}</td>
-                        <td class="font-medium whitespace-nowrap">{{ customer.email }}</td>
-                        <td class="font-medium whitespace-nowrap"> كيلو {{ customer.totalReceiptsQuantity }}</td>
+                        <td class="font-medium whitespace-nowrap">{{ receiptInvoice.color?.name }}</td>
+                        <td class="font-medium whitespace-nowrap">كيلو {{ receiptInvoice.quantity  }} </td>
+                        <td class="font-medium whitespace-nowrap">{{ $h.formatDate(receiptInvoice.date , 'YYYY-MM-DD')}}</td>
                         <!-- <td>
                             <a class="text-slate-500 flex items-center mr-3" href="javascript:;">
                                 <ExternalLinkIcon class="w-4 h-4 mr-2" />
-                                /customers/{{ faker.customers[0].slug }}
+                                /receiptInvoices/{{ faker.receiptInvoices[0].slug }}
                             </a>
                         </td>
                         <td class="w-40">
@@ -99,12 +104,12 @@
                         </td> -->
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <router-link :to="{ name: 'customersEdit', params: { id: customer._id } }"
+                                <router-link :to="{ name: 'ReceiptInvoicesEdit', params: { id: receiptInvoice.id } }"
                                     class="flex items-center mr-3">
                                     <CheckSquareIcon class="w-4 h-4 mr-1" /> تعديل
                                 </router-link>
                                 <a class="flex items-center text-danger" href="javascript:;"
-                                    @click="openConfirmationModal(customer._id)">
+                                    @click="openConfirmationModal(receiptInvoice.id)">
                                     <Trash2Icon class="w-4 h-4 mr-1" /> حذف
                                 </a>
                             </div>
@@ -118,12 +123,12 @@
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
             <nav class="w-full sm:w-auto sm:mr-auto">
                 <ul class="pagination">
-                    <li class="page-item" @click="getAllCustomers(1)" v-if="pagination.currentPage != 1">
+                    <li class="page-item" @click="getAllReceiptInvoices(1)" v-if="pagination.currentPage != 1">
                         <a class="page-link">
                             <ChevronsLeftIcon class="w-4 h-4" />
                         </a>
                     </li>
-                    <li class="page-item" @click="getAllCustomers(pagination.currentPage - 1)"
+                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage - 1)"
                         v-if="pagination.currentPage != 1">
                         <a class="page-link">
                             <ChevronLeftIcon class="w-4 h-4" />
@@ -132,27 +137,27 @@
                     <li class="page-item" v-if="pagination.currentPage != 1">
                         <a class="page-link">...</a>
                     </li>
-                    <li class="page-item" @click="getAllCustomers(pagination.currentPage - 1)"
+                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage - 1)"
                         v-if="pagination.currentPage != 1">
                         <a class="page-link">{{ pagination.currentPage - 1 }}</a>
                     </li>
                     <li class="page-item active">
                         <a class="page-link">{{ pagination.currentPage }}</a>
                     </li>
-                    <li class="page-item" @click="getAllCustomers(pagination.currentPage + 1)"
+                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage + 1)"
                         v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">{{ pagination.currentPage + 1 }}</a>
                     </li>
                     <li class="page-item" v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">...</a>
                     </li>
-                    <li class="page-item" @click="getAllCustomers(pagination.currentPage + 1)"
+                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage + 1)"
                         v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">
                             <ChevronRightIcon class="w-4 h-4" />
                         </a>
                     </li>
-                    <li class="page-item" @click="getAllCustomers(pagination.lastPage)"
+                    <li class="page-item" @click="getAllReceiptInvoices(pagination.lastPage)"
                         v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">
                             <ChevronsRightIcon class="w-4 h-4" />
@@ -160,12 +165,7 @@
                     </li>
                 </ul>
             </nav>
-            <!-- <select class="w-20 form-select box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select> -->
+         
         </div>
         <!-- END: Pagination -->
     </div>
@@ -183,7 +183,7 @@
                 <button type="button" @click="deleteConfirmationModal = false" class="btn btn-outline-secondary w-24 mr-1">
                     الغاء
                 </button>
-                <button type="button" @click="deleteCustomer(seclectedCustomerId)"
+                <button type="button" @click="deleteReceiptInvoice(seclectedReceiptInvoiceId)"
                     class="btn btn-danger w-24">حذف</button>
             </div>
         </ModalBody>
@@ -192,17 +192,17 @@
 </template>
   
 <script>
-import CustomersService from "@/services/CustomersService";
+import ReceiptInvoicesService from "@/services/ReceiptInvoicesService";
 import { toastMixin } from "@/mixins/toast";
 
 export default {
-    name: "customers-list",
+    name: "receiptInvoices-list",
     mixins: [toastMixin],
 
     data() {
         return {
-            customers: [],
-            seclectedCustomerId: null,
+            receiptInvoices: [],
+            seclectedReceiptInvoiceId: null,
             pagination: {},
             deleteConfirmationModal: false,
             loading: false,
@@ -211,18 +211,18 @@ export default {
     },
 
     mounted() {
-        this.getAllCustomers();
+        this.getAllReceiptInvoices();
     },
 
     methods: {
-        getAllCustomers(page = null) {
+        getAllReceiptInvoices(page = null) {
             page = page ?? this.page;
             this.handelLoading(true);
             this.page = page;
-            CustomersService.getAll(page)
+            ReceiptInvoicesService.getAll(page)
                 .then(response => {
                     if (response.data.success === true) {
-                        this.customers = response.data.payload?.data;
+                        this.receiptInvoices = response.data.payload?.data;
                         this.pagination = response.data.payload?.pagination;
                     }
                     this.handelLoading(false);
@@ -239,15 +239,15 @@ export default {
 
                 });
         },
-        deleteCustomer(id) {
+        deleteReceiptInvoice(id) {
             this.handelLoading(true);
-            CustomersService.delete(id)
+            ReceiptInvoicesService.delete(id)
                 .then(response => {
                     if (response.data.success === true) {
-                        this.seclectedCustomerId = null;
+                        this.seclectedReceiptInvoiceId = null;
                         this.deleteConfirmationModal = false;
-                        this.getAllCustomers();
-                        this.showToast("Customer deleted successfully!", "success");
+                        this.getAllReceiptInvoices();
+                        this.showToast("ReceiptInvoice deleted successfully!", "success");
                     } else {
                         this.showToast({
                             title: "Validation Error",
@@ -271,7 +271,7 @@ export default {
                 });
         },
         openConfirmationModal(id) {
-            this.seclectedCustomerId = id;
+            this.seclectedReceiptInvoiceId = id;
             this.deleteConfirmationModal = true;
         },
         handelLoading(status) {

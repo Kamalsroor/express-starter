@@ -94,6 +94,7 @@
 @import "tom-select/dist/css/tom-select.css";
 @import "tiny-slider/dist/tiny-slider.css";
 @import "simplebar/src/simplebar.css";
+@import 'vue-select/dist/vue-select.css';
 
 /*
  |--------------------------------------------------------------------------
@@ -148,3 +149,6 @@
 @import "./components/_source-preview.css";
 @import "./components/_full-calendar.css";
 @import "./components/_pristine.css";
+.input-group > .form-control{
+  z-index: 1;
+}

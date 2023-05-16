@@ -12,6 +12,10 @@ import CustomersIndex from "../views/Customers/index.vue";
 import customersCreate from "../views/Customers/form.vue";
 import customersEdit from "../views/Customers/form.vue";
 
+import ReceiptInvoicesIndex from "../views/ReceiptInvoices/index.vue";
+import ReceiptInvoicesCreate from "../views/ReceiptInvoices/form.vue";
+import ReceiptInvoicesEdit from "../views/ReceiptInvoices/form.vue";
+
 
 
 const routes = [
@@ -64,38 +68,33 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/simple-menu",
-  //   component: SimpleMenu,
-  //   children: [
-  //     {
-  //       path: "page-1",
-  //       name: "simple-menu-page-1",
-  //       component: Page1,
-  //     },
-  //     {
-  //       path: "page-2",
-  //       name: "simple-menu-page-2",
-  //       component: Page2,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: "/top-menu",
-  //   component: TopMenu,
-  //   children: [
-  //     {
-  //       path: "page-1",
-  //       name: "top-menu-page-1",
-  //       component: Page1,
-  //     },
-  //     {
-  //       path: "page-2",
-  //       name: "top-menu-page-2",
-  //       component: Page2,
-  //     },
-  //   ],
-  // },
+  {
+    path: "/receipt-invoices",
+    name: "ReceiptInvoices",
+    component: SideMenu,
+    redirect:{name:"ReceiptInvoicesIndex"},
+    meta: {
+        middleware: authMiddleware,
+    },
+    children: [
+ 
+      {
+        path: "list",
+        name: "ReceiptInvoicesIndex",
+        component: ReceiptInvoicesIndex,
+      },
+      {
+        path: "create",
+        name: "ReceiptInvoicesCreate",
+        component: ReceiptInvoicesCreate,
+      },
+      {
+        path: ":id/edit",
+        name: "ReceiptInvoicesEdit",
+        component: ReceiptInvoicesEdit,
+      },
+    ],
+  },
 ];
 
 

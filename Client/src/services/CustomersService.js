@@ -2,7 +2,10 @@ import http from "../http-common";
 
 class CustomersService {
   getAll(page) {
-    return http.get("/customers", { params: { page: page } });
+    return http.get("/customers/get/receipts", { params: { page: page } });
+  }
+  getAllWOP() {
+    return http.get("/customers", { params: { perPage: 'all' } });
   }
 
   get(id) {

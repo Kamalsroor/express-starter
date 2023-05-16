@@ -1,5 +1,5 @@
 <template>
-    <h2 class="intro-y text-lg font-medium mt-10">Create Customers</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Create ReceiptInvoices</h2>
 
 
       <div class="grid grid-cols-12 gap-6 mt-5">
@@ -7,9 +7,9 @@
           <!-- BEGIN: Form Layout -->
           <div class="intro-y box p-5">
             <div class="mt-3">
-              <label for="crud-form-1" class="form-label">Customer Name</label>
+              <label for="crud-form-1" class="form-label">ReceiptInvoice Name</label>
               <input
-                v-model="customer.name"
+                v-model="receiptInvoice.name"
                 id="crud-form-1"
                 type="text"
                 class="form-control w-full"
@@ -17,9 +17,9 @@
               />
             </div>
             <div class="mt-3">
-                <label for="crud-form-1" class="form-label">Customer Email</label>
+                <label for="crud-form-1" class="form-label">ReceiptInvoice Email</label>
                 <input
-                  v-model="customer.email"
+                  v-model="receiptInvoice.email"
                   id="crud-form-1"
                   type="email"
                   class="form-control w-full"
@@ -27,9 +27,9 @@
                 />
               </div>
               <div class="mt-3">
-                <label for="crud-form-1" class="form-label">Customer Phone</label>
+                <label for="crud-form-1" class="form-label">ReceiptInvoice Phone</label>
                 <input
-                  v-model="customer.phone"
+                  v-model="receiptInvoice.phone"
                   id="crud-form-1"
                   type="text"
                   class="form-control w-full"
@@ -50,16 +50,16 @@
 </template>
   
 <script>
-import CustomersService from "@/services/CustomersService";
+import ReceiptInvoicesService from "@/services/ReceiptInvoicesService";
 import { toastMixin } from '@/mixins/toast'
 
 
 export default {
-    name: "customers-create",
+    name: "receiptInvoices-create",
     mixins: [toastMixin],
     data() {
         return {
-            customer: {},
+            receiptInvoice: {},
             loading: false,
         };
     },
@@ -69,7 +69,7 @@ export default {
     methods: {
         save() {
             this.handelLoading(true);
-            CustomersService.create(this.customer)
+            ReceiptInvoicesService.create(this.receiptInvoice)
                 .then(response => {
                     if (response.data.success === true) {
                         this.showToast('This is a success toast!', 'success')
@@ -87,10 +87,10 @@ export default {
                 });
         },
         resetForm(){
-            this.customer = {};
+            this.receiptInvoice = {};
         },
         backToList(){
-            this.$router.push({name:'customersIndex'});
+            this.$router.push({name:'receiptInvoicesIndex'});
         },
         handelLoading(status){
             this.loading = status;

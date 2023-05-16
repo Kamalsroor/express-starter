@@ -57,6 +57,4 @@ CustomValidator(newSchema , CustomerRequest);
 
 
 
-
-
 module.exports = mongoose.model('Customer', newSchema);

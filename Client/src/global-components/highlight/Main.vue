@@ -40,7 +40,7 @@ const vHighlightDirective = {
     // Beautify code
     source = jsBeautify.html(source);
 
-    // Save for copy code function
+    // حفظ for copy code function
     copySource.value = source;
 
     // Format for highlight.js

@@ -14,10 +14,10 @@
         </div>
         <div class="text-right mt-5">
           <button type="button" @click="backToList" class="btn btn-outline-secondary w-24 mr-1">
-            Cancel
+            الغاء
           </button>
-          <button type="button" @click="save" class="btn btn-primary w-24" :disabled="loading">{{ editMode ? 'Update' :
-            'Save' }}</button>
+          <button type="button" @click="save" class="btn btn-primary w-24" :disabled="loading">{{ editMode ? 'تعديل' :
+            'حفظ' }}</button>
         </div>
       </div>
     </div>

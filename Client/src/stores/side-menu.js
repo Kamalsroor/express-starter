@@ -6,12 +6,17 @@ export const useSideMenuStore = defineStore("sideMenu", {
       {
         icon: "HomeIcon",
         pageName: "home",
-        title: "Home",
+        title: "الرئيسية",
       },
       {
         icon: "HomeIcon",
         pageName: "customersIndex",
-        title: "Customers",
+        title: "العملاء",
+      },
+      {
+        icon: "HomeIcon",
+        pageName: "ReceiptInvoicesIndex",
+        title: "أستلامات",
       },
     ],
   }),

@@ -2,6 +2,7 @@
 .idea
 # dependencies
 /node_modules
+
 # testing
 /coverage
 
@@ -19,3 +20,27 @@ package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+Api/.idea
+# dependencies
+Api/node_modules
+
+# testing
+Api/coverage
+
+# production
+Api/build
+
+# misc
+Api/.DS_Store
+Api/.env.development.local
+Api/.env.production.local
+Api/.env
+
+Api/package-lock.json
+
+Api/npm-debug.log*
+Api/yarn-debug.log*
+Api/yarn-error.log*

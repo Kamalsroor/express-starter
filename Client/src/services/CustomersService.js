@@ -17,7 +17,7 @@ class CustomersService {
   }
 
   update(data) {
-    return http.put(`/customers/${data.id}`, data);
+    return http.put(`/customers/${data._id}`, data);
   }
 
   delete(id) {

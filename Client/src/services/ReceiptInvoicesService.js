@@ -14,7 +14,7 @@ class ReceiptInvoicesService {
   }
 
   update(data) {
-    return http.put(`/receipt-invoices/${data.id}`, data);
+    return http.put(`/receipt-invoices/${data._id}`, data);
   }
 
   delete(id) {

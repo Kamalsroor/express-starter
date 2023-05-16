@@ -18,6 +18,11 @@ export const useSideMenuStore = defineStore("sideMenu", {
         pageName: "ReceiptInvoicesIndex",
         title: "أستلامات",
       },
+      {
+        icon: "HomeIcon",
+        pageName: "employeesIndex",
+        title: "الموظفين",
+      },
     ],
   }),
 });

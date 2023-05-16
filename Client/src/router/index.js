@@ -12,6 +12,10 @@ import CustomersIndex from "../views/Customers/index.vue";
 import customersCreate from "../views/Customers/form.vue";
 import customersEdit from "../views/Customers/form.vue";
 
+import employeesIndex from "../views/Employees/index.vue";
+import employeesCreate from "../views/Employees/form.vue";
+import employeesEdit from "../views/Employees/form.vue";
+
 import ReceiptInvoicesIndex from "../views/ReceiptInvoices/index.vue";
 import ReceiptInvoicesCreate from "../views/ReceiptInvoices/form.vue";
 import ReceiptInvoicesEdit from "../views/ReceiptInvoices/form.vue";
@@ -65,6 +69,33 @@ const routes = [
         path: ":id/edit",
         name: "customersEdit",
         component: customersEdit,
+      },
+    ],
+  },
+  {
+    path: "/employees",
+    name: "employees",
+    component: SideMenu,
+    redirect:{name:"employeesIndex"},
+    meta: {
+        middleware: authMiddleware,
+    },
+    children: [
+ 
+      {
+        path: "list",
+        name: "employeesIndex",
+        component: employeesIndex,
+      },
+      {
+        path: "create",
+        name: "employeesCreate",
+        component: employeesCreate,
+      },
+      {
+        path: ":id/edit",
+        name: "employeesEdit",
+        component: employeesEdit,
       },
     ],
   },

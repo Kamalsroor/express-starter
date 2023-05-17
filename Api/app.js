@@ -59,7 +59,7 @@ const dbConfig = require('./config/db');
 (async () => {
     try {
 		mongoose.set('strictQuery', false);
-
+		console.log('dbConfig.url, dbConfig.options' , dbConfig.url, dbConfig.options);
         await mongoose.connect(dbConfig.url, dbConfig.options);
         console.log("db connected")
     } catch (err) {

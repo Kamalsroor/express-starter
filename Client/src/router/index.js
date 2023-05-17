@@ -163,7 +163,7 @@ const routes = [
 
 const router = createRouter({
   mode: 'history',
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { left: 0, top: 0 };

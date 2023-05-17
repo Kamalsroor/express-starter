@@ -2,7 +2,7 @@
     <h2 class="intro-y text-lg font-medium mt-10">فواتير الاستلام</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <router-link :to="{ name: 'ReceiptInvoicesCreate' }" class="btn btn-primary shadow-md mr-2">اضافة فاتورة جديدة</router-link>
+            <router-link :to="{ name: 'DeliveryInvoicesCreate' }" class="btn btn-primary shadow-md mr-2">اضافة فاتورة جديدة</router-link>
             <!-- <Dropdown>
                 <DropdownToggle class="btn px-2 box">
                     <span class="w-5 h-5 flex items-center justify-center">
@@ -43,8 +43,8 @@
                         <!-- <th class="whitespace-nowrap">IMAGES</th> -->
                         <th class="whitespace-nowrap">#</th>
                         <th class="whitespace-nowrap">العميل</th>
-                        <th class="whitespace-nowrap">اللون</th>
-                        <th class="whitespace-nowrap">الكمية</th>
+                        <!-- <th class="whitespace-nowrap">اللون</th>
+                        <th class="whitespace-nowrap">الكمية</th> -->
                         <th class="whitespace-nowrap">تاريخ الاستلام</th>
                         <!-- <th class="whitespace-nowrap">SLUG</th> -->
                         <!-- <th class="text-center whitespace-nowrap">STATUS</th> -->
@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody v-if="!loading">
-                    <tr v-for="(receiptInvoice, Key) in receiptInvoices" :key="Key" class="intro-x">
+                    <tr v-for="(deliveryInvoice, Key) in deliveryInvoices" :key="Key" class="intro-x">
                         <!-- <td class="w-40">
                             <div class="flex">
                                 <div class="w-10 h-10 image-fit zoom-in">
@@ -70,27 +70,27 @@
                             </div>
                         </td> -->
                         <td class="font-medium whitespace-nowrap">
-                            {{ receiptInvoice.id }}
+                            {{ deliveryInvoice.id }}
                             <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                created At: {{ $h.timeAgo(receiptInvoice.createdAt)}}
+                                created At: {{ $h.timeAgo(deliveryInvoice.createdAt)}}
                             </div>
                         </td>
 
                         <td>
                             <a href="" class="font-medium whitespace-nowrap">{{
-                                receiptInvoice.customerId?.name
+                                deliveryInvoice.customer?.name
                             }}</a>
                             <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                phone: {{ receiptInvoice.customerId?.phone }}
+                                phone: {{ deliveryInvoice.customer?.phone }}
                             </div>
                         </td>
-                        <td class="font-medium whitespace-nowrap">{{ receiptInvoice.color?.name }}</td>
-                        <td class="font-medium whitespace-nowrap">كيلو {{ receiptInvoice.quantity  }} </td>
-                        <td class="font-medium whitespace-nowrap">{{ $h.formatDate(receiptInvoice.date , 'YYYY-MM-DD')}}</td>
+                        <!-- <td class="font-medium whitespace-nowrap">{{ deliveryInvoice.color?.name }}</td>
+                        <td class="font-medium whitespace-nowrap">كيلو {{ deliveryInvoice.quantity  }} </td> -->
+                        <td class="font-medium whitespace-nowrap">{{ $h.formatDate(deliveryInvoice.date , 'YYYY-MM-DD')}}</td>
                         <!-- <td>
                             <a class="text-slate-500 flex items-center mr-3" href="javascript:;">
                                 <ExternalLinkIcon class="w-4 h-4 mr-2" />
-                                /receiptInvoices/{{ faker.receiptInvoices[0].slug }}
+                                /deliveryInvoices/{{ faker.deliveryInvoices[0].slug }}
                             </a>
                         </td>
                         <td class="w-40">
@@ -104,12 +104,12 @@
                         </td> -->
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <router-link :to="{ name: 'ReceiptInvoicesEdit', params: { id: receiptInvoice.id } }"
+                                <router-link :to="{ name: 'DeliveryInvoicesEdit', params: { id: deliveryInvoice.id } }"
                                     class="flex items-center mr-3">
                                     <CheckSquareIcon class="w-4 h-4 mr-1" /> تعديل
                                 </router-link>
                                 <a class="flex items-center text-danger" href="javascript:;"
-                                    @click="openConfirmationModal(receiptInvoice.id)">
+                                    @click="openConfirmationModal(deliveryInvoice.id)">
                                     <Trash2Icon class="w-4 h-4 mr-1" /> حذف
                                 </a>
                             </div>
@@ -123,12 +123,12 @@
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
             <nav class="w-full sm:w-auto sm:mr-auto">
                 <ul class="pagination">
-                    <li class="page-item" @click="getAllReceiptInvoices(1)" v-if="pagination.currentPage != 1">
+                    <li class="page-item" @click="getAllDeliveryInvoices(1)" v-if="pagination.currentPage != 1">
                         <a class="page-link">
                             <ChevronsLeftIcon class="w-4 h-4" />
                         </a>
                     </li>
-                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage - 1)"
+                    <li class="page-item" @click="getAllDeliveryInvoices(pagination.currentPage - 1)"
                         v-if="pagination.currentPage != 1">
                         <a class="page-link">
                             <ChevronLeftIcon class="w-4 h-4" />
@@ -137,27 +137,27 @@
                     <li class="page-item" v-if="pagination.currentPage != 1">
                         <a class="page-link">...</a>
                     </li>
-                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage - 1)"
+                    <li class="page-item" @click="getAllDeliveryInvoices(pagination.currentPage - 1)"
                         v-if="pagination.currentPage != 1">
                         <a class="page-link">{{ pagination.currentPage - 1 }}</a>
                     </li>
                     <li class="page-item active">
                         <a class="page-link">{{ pagination.currentPage }}</a>
                     </li>
-                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage + 1)"
+                    <li class="page-item" @click="getAllDeliveryInvoices(pagination.currentPage + 1)"
                         v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">{{ pagination.currentPage + 1 }}</a>
                     </li>
                     <li class="page-item" v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">...</a>
                     </li>
-                    <li class="page-item" @click="getAllReceiptInvoices(pagination.currentPage + 1)"
+                    <li class="page-item" @click="getAllDeliveryInvoices(pagination.currentPage + 1)"
                         v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">
                             <ChevronRightIcon class="w-4 h-4" />
                         </a>
                     </li>
-                    <li class="page-item" @click="getAllReceiptInvoices(pagination.lastPage)"
+                    <li class="page-item" @click="getAllDeliveryInvoices(pagination.lastPage)"
                         v-if="pagination.currentPage != pagination.lastPage">
                         <a class="page-link">
                             <ChevronsRightIcon class="w-4 h-4" />
@@ -183,7 +183,7 @@
                 <button type="button" @click="deleteConfirmationModal = false" class="btn btn-outline-secondary w-24 mr-1">
                     الغاء
                 </button>
-                <button type="button" @click="deleteReceiptInvoice(seclectedReceiptInvoiceId)"
+                <button type="button" @click="deleteDeliveryInvoice(seclectedDeliveryInvoiceId)"
                     class="btn btn-danger w-24">حذف</button>
             </div>
         </ModalBody>
@@ -192,17 +192,17 @@
 </template>
   
 <script>
-import ReceiptInvoicesService from "@/services/ReceiptInvoicesService";
+import DeliveryInvoicesService from "@/services/DeliveryInvoicesService";
 import { toastMixin } from "@/mixins/toast";
 
 export default {
-    name: "receiptInvoices-list",
+    name: "deliveryInvoices-list",
     mixins: [toastMixin],
 
     data() {
         return {
-            receiptInvoices: [],
-            seclectedReceiptInvoiceId: null,
+            deliveryInvoices: [],
+            seclectedDeliveryInvoiceId: null,
             pagination: {},
             deleteConfirmationModal: false,
             loading: false,
@@ -211,18 +211,18 @@ export default {
     },
 
     mounted() {
-        this.getAllReceiptInvoices();
+        this.getAllDeliveryInvoices();
     },
 
     methods: {
-        getAllReceiptInvoices(page = null) {
+        getAllDeliveryInvoices(page = null) {
             page = page ?? this.page;
             this.handelLoading(true);
             this.page = page;
-            ReceiptInvoicesService.getAll(page)
+            DeliveryInvoicesService.getAll(page)
                 .then(response => {
                     if (response.data.success === true) {
-                        this.receiptInvoices = response.data.payload?.data;
+                        this.deliveryInvoices = response.data.payload?.data;
                         this.pagination = response.data.payload?.pagination;
                     }
                     this.handelLoading(false);
@@ -239,15 +239,15 @@ export default {
 
                 });
         },
-        deleteReceiptInvoice(id) {
+        deleteDeliveryInvoice(id) {
             this.handelLoading(true);
-            ReceiptInvoicesService.delete(id)
+            DeliveryInvoicesService.delete(id)
                 .then(response => {
                     if (response.data.success === true) {
-                        this.seclectedReceiptInvoiceId = null;
+                        this.seclectedDeliveryInvoiceId = null;
                         this.deleteConfirmationModal = false;
-                        this.getAllReceiptInvoices();
-                        this.showToast("ReceiptInvoice deleted successfully!", "success");
+                        this.getAllDeliveryInvoices();
+                        this.showToast("DeliveryInvoice deleted successfully!", "success");
                     } else {
                         this.showToast({
                             title: "Validation Error",
@@ -271,7 +271,7 @@ export default {
                 });
         },
         openConfirmationModal(id) {
-            this.seclectedReceiptInvoiceId = id;
+            this.seclectedDeliveryInvoiceId = id;
             this.deleteConfirmationModal = true;
         },
         handelLoading(status) {

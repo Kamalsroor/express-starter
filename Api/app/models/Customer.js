@@ -20,7 +20,6 @@ var newSchema = new Schema({
     required: [true, "email is required."],
     default: ""
   },
-  
 },
   { timestamps: true });
 
@@ -40,7 +39,13 @@ var newSchema = new Schema({
 newSchema.virtual('receipts', {
   ref: 'ReceiptInvoice', //The Model to use
   localField: '_id', //Find in Model, where localField 
-  foreignField: 'coustomerId', // is equal to foreignField
+  foreignField: 'customerId', // is equal to foreignField
+});
+
+newSchema.virtual('deliveries', {
+  ref: 'DeliveryInvoice', //The Model to use
+  localField: '_id', //Find in Model, where localField 
+  foreignField: 'customer', // is equal to foreignField
 });
 
 // Set Object and Json property to true. Default is set to false

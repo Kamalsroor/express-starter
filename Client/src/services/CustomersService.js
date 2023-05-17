@@ -12,6 +12,10 @@ class CustomersService {
     return http.get(`/customers/${id}`);
   }
 
+  getOneWithColors(id) {
+    return http.get(`/customers/get/${id}/receipts`);
+  }
+
   create(data) {
     return http.post("/customers", data);
   }

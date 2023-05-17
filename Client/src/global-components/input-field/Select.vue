@@ -217,8 +217,9 @@ export default {
             return hasTrue;
           }
         }
-        console.log(hasTrue);
-        return hasTrue ?? (label || '').toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1
+
+        
+        return (label || '').toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1
       }else{
 
         let searchQuery = false ;

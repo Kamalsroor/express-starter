@@ -20,6 +20,10 @@ import ReceiptInvoicesIndex from "../views/ReceiptInvoices/index.vue";
 import ReceiptInvoicesCreate from "../views/ReceiptInvoices/form.vue";
 import ReceiptInvoicesEdit from "../views/ReceiptInvoices/form.vue";
 
+import DeliveryInvoicesIndex from "../views/DeliveryInvoices/index.vue";
+import DeliveryInvoicesCreate from "../views/DeliveryInvoices/form.vue";
+import DeliveryInvoicesEdit from "../views/DeliveryInvoices/form.vue";
+
 
 
 const routes = [
@@ -123,6 +127,33 @@ const routes = [
         path: ":id/edit",
         name: "ReceiptInvoicesEdit",
         component: ReceiptInvoicesEdit,
+      },
+    ],
+  },
+  {
+    path: "/delivery-invoices",
+    name: "DeliveryInvoices",
+    component: SideMenu,
+    redirect:{name:"DeliveryInvoicesIndex"},
+    meta: {
+        middleware: authMiddleware,
+    },
+    children: [
+ 
+      {
+        path: "list",
+        name: "DeliveryInvoicesIndex",
+        component: DeliveryInvoicesIndex,
+      },
+      {
+        path: "create",
+        name: "DeliveryInvoicesCreate",
+        component: DeliveryInvoicesCreate,
+      },
+      {
+        path: ":id/edit",
+        name: "DeliveryInvoicesEdit",
+        component: DeliveryInvoicesEdit,
       },
     ],
   },

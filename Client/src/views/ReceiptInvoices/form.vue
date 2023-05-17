@@ -4,7 +4,7 @@
     <div class="intro-y col-span-12 lg:col-span-12"> <!-- BEGIN: Form Layout -->
       <div class="intro-y box p-5">
         <div class="mt-3 grid grid-cols-12">
-          <SelectField v-model="receiptInvoice.coustomerId"  labelValue="name" keyValue="id"
+          <SelectField v-model="receiptInvoice.customerId"  labelValue="name" keyValue="id"
           :selectData="customers" :hasTemplate="true" class="col-span-12 lg:col-span-6" label="ألعميل" name="customers"
           placeholder="اختار العميل من فضلك" v-slot="{ option, labelValue }" :filterByList="['name','phone','email']">
           {{ option[labelValue] }} - {{ option.phone }}
@@ -36,7 +36,8 @@
           <div class="input-group">
             <input
               id="crud-form-3"
-              type="text"
+              type="number"
+              min="1"
               v-model="receiptInvoice.quantity"
               class="form-control"
               placeholder="ادخل الكمية بالكيلو"
@@ -111,7 +112,7 @@ export default {
     }
   },
   watch: {
-    "receiptInvoice.coustomerId" : function (value) {
+    "receiptInvoice.customerId" : function (value) {
       if(this.$h.isset(value)){
         this.fetchCustomerById(value);
       }

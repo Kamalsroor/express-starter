@@ -2,20 +2,32 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const baseModel = require('./helpers/baseModel');
 const CustomValidator = require('./helpers/CustomValidator');
-const ReceiptInvoiceRequest = require('../http/requests/ReceiptInvoiceRequest');
+const DeliveryInvoiceRequest = require('../http/requests/DeliveryInvoiceRequest');
+
+
+const itemSchema = new mongoose.Schema({
+  quantity: { 
+    type: Number, 
+    required: [true, "الكمية مطلوب"], 
+    min: [1, "يجب ان تكون الكمية 1 كيلو او اكثر"]
+  },
+  color: { type: Schema.Types.ObjectId, ref: 'Color', required: true },
+  outOfStock: {
+    type: Number,
+    required: [true, "الهالك مطلوب"], 
+    min: [0, "الهالك يجب ان يكون 0 كيلو او اكثر"]
+  },
+  price: {
+    type: Number,
+    required: [true, "السعر مطلوب"], 
+    min: [1, "الهالك يجب ان يكون اكبر من او يساوي 1"]
+  },
+});
+  
+
 
 var newSchema = new Schema({
-  'quantity': {
-    type: Number, 
-    required: [true, "Quantity is required."], 
-    min: [1, "Must be 1 or greater"], 
-    default: 0
-  },
-  'color': {
-    required: [true, "Color is required."],
-    type: mongoose.Types.ObjectId,
-    ref: "Color"
-  },
+  customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
   'note': {
     type: String, 
     default: ""
@@ -24,14 +36,10 @@ var newSchema = new Schema({
     type: Date, 
     default: Date.now
   },
-  customerId: {
-    required: [true, "Customer is required."],
-    type: Schema.Types.ObjectId,
-    ref: 'Customer',
-    required: true
- }
+  items: [{ type: itemSchema, required: true }],
 },
   { timestamps: true });
+
 
     
 /**
@@ -60,6 +68,6 @@ newSchema.set('toJSON', { virtuals: true });
 
 
   baseModel(newSchema);
-  CustomValidator(newSchema,ReceiptInvoiceRequest);
+  CustomValidator(newSchema,DeliveryInvoiceRequest);
 
-module.exports = mongoose.model('ReceiptInvoice', newSchema);
+module.exports = mongoose.model('DeliveryInvoice', newSchema);

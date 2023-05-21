@@ -8,7 +8,7 @@ const receiptInvoiceService = new CRUD(ReceiptInvoice , 'receiptInvoices');
 
 receiptInvoiceService.getAllWithCustomer = async (req, res) => {
     try {
-        const docs = await ReceiptInvoice.find().withReletion('customerId','color').pagination(req);
+        const docs = await ReceiptInvoice.find().withReletion('customerId').pagination(req);
         res.apiSuccess(docs)
     } catch (err) {
         res.status(500).apiError(err.message);

@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 
 const baseModel = function(schema) {
 
-  
-  // mongoose.Query.prototype.withSum = async function(field) {
-  //   const docs = await this.exec();
-  //   const sum = docs.reduce((acc, doc) => acc + doc[field], 0);
-  //   return { docs, sum };
-  // };
 
 
   mongoose.Query.prototype.withReletion = function(...args) {
@@ -58,7 +52,6 @@ const baseModel = function(schema) {
     } catch (error) {
       throw new Error(error);
     }
-    // return this;
   };
 
   mongoose.Query.prototype.test = async function (pipeline, options = {}) {
@@ -83,54 +76,7 @@ const baseModel = function(schema) {
       }
     };
   };
-  // mongoose.Query.prototype.paginationWithAggregate = async function(req , customerPipeline) {
-  //     try {
-
-
-  //     const page = parseInt(req.query.page) || 1;
-      
-  //     const perPage = req.query.perPage != 'all' ? parseInt(req.query.perPage) || 10 : 'all';
-
-  //     let data = this;
-      
-  //     if(perPage === 'all'){
-  //       data = await this.aggregate(customerPipeline).exec();
-  //     }else{
-  //       const startIndex = (page - 1) * perPage;
-  //        data = await this.aggregate(customerPipeline).skip(startIndex).limit(perPage).exec();
-  //     }
-
-  //     const countQuery = this.model.countDocuments(this.getQuery());
-  //     const total = await countQuery.exec();
-  //     const totalPages = perPage != 'all' ? Math.ceil(total / perPage) : 1;
-  //     const pagination = {
-  //       currentPage: page,
-  //       lastPage: totalPages,
-  //       perPage,
-  //       total,
-  //     };
-
-  //     return {
-  //       data,
-  //       pagination
-  //     };
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  //   // return this;
-  // };
-
  
-  
-  
-
-  // schema.methods.with = function(...args) {
-  //   console.log('with args : ' , args);
-  //   args.forEach(arg => {
-  //     this.populate({path:arg});
-  //   });
-  //   return this;
-  // };
 
 
 };

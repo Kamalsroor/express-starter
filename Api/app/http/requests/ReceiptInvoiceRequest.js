@@ -3,7 +3,8 @@ const Request = require('./BaseRequest');
 class ReceiptInvoiceRequest extends Request {
     static rules(){
         return {
-            'quantity':'required|min:1' 
+            'items':'required|array|min:1'
+
         };
     }
 }

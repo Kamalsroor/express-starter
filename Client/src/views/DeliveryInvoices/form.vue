@@ -202,7 +202,6 @@ export default {
       if(this.$h.isset(value)){
 
         if(old != null){
-
           this.deliveryInvoice.items.forEach(item => {
             item.color = null;
           });

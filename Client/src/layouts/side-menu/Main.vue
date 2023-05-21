@@ -34,7 +34,7 @@
                 :href="
                   menu.subMenu
                     ? 'javascript:;'
-                    : router.resolve({ name: menu.pageName }).path
+                    : router.resolve({ name: menu.pageName , params: menu.pageParams }).path
                 "
                 class="side-menu"
                 :class="{
@@ -70,7 +70,7 @@
                       :href="
                         subMenu.subMenu
                           ? 'javascript:;'
-                          : router.resolve({ name: subMenu.pageName }).path
+                          : router.resolve({ name: subMenu.pageName , params: subMenu.pageParams}).path
                       "
                       class="side-menu"
                       :class="{ 'side-menu--active': subMenu.active }"

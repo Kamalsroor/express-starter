@@ -48,6 +48,8 @@ newSchema.virtual('deliveries', {
   foreignField: 'customer', // is equal to foreignField
 });
 
+
+
 // Set Object and Json property to true. Default is set to false
 newSchema.set('toObject', { virtuals: true });
 newSchema.set('toJSON', { virtuals: true });

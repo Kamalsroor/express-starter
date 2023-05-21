@@ -70,7 +70,7 @@
                             </div>
                         </td> -->
                         <td class="font-medium whitespace-nowrap">
-                            {{ receiptInvoice.id }}
+                            {{ receiptInvoice._id }}
                             <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
                                 created At: {{ $h.timeAgo(receiptInvoice.createdAt)}}
                             </div>
@@ -104,12 +104,12 @@
                         </td> -->
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <router-link :to="{ name: 'ReceiptInvoicesEdit', params: { id: receiptInvoice.id } }"
+                                <router-link :to="{ name: 'ReceiptInvoicesEdit', params: { id: receiptInvoice._id } }"
                                     class="flex items-center mr-3">
                                     <CheckSquareIcon class="w-4 h-4 mr-1" /> تعديل
                                 </router-link>
                                 <a class="flex items-center text-danger" href="javascript:;"
-                                    @click="openConfirmationModal(receiptInvoice.id)">
+                                    @click="openConfirmationModal(receiptInvoice._id)">
                                     <Trash2Icon class="w-4 h-4 mr-1" /> حذف
                                 </a>
                             </div>

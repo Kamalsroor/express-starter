@@ -51,6 +51,7 @@ const linkTo = (menu, router, event) => {
     event.preventDefault();
     router.push({
       name: menu.pageName,
+      params: menu.pageParams
     });
   }
 };

@@ -23,6 +23,7 @@ var newSchema = new Schema({
     default: "general"
   },
   'note': {
+    // GeneralExpense
     type: String, 
     default: ""
   },

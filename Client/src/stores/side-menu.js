@@ -28,6 +28,21 @@ export const useSideMenuStore = defineStore("sideMenu", {
         pageName: "employeesIndex",
         title: "الموظفين",
       },
+      {
+        icon: "HomeIcon",
+        pageName: "ExpensesIndex",
+        pageParams:{ type:"general"},
+        title: "الحسابات",
+        subMenu: [
+          {
+            icon: "",
+            pageName: "ExpensesIndex",
+            pageParams:{ type:"general"},
+            title: "المصاريف العامة",
+          },
+        
+        ],
+      },
     ],
   }),
 });

@@ -10,6 +10,8 @@ export const useAuthStore = defineStore('auth', {
     setToken(token) {
         console.log('setToken'  , token);
       this.token = token
+      router.push({ name: "home" });
+
       localStorage.setItem('token', token)
     },
     logout() {

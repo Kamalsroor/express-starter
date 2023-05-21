@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DarkModeSwitcher />
+    <!-- <DarkModeSwitcher /> -->
     <div class="container sm:px-10">
       <div class="block xl:grid grid-cols-2 gap-4">
         <!-- BEGIN: Login Info -->
@@ -83,13 +83,13 @@
               >
                 Login
               </button>
-              <button
+              <!-- <button
                 class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top"
               >
                 Register
-              </button>
+              </button> -->
             </div>
-            <div
+            <!-- <div
               class="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left"
             >
               By signin up, you agree to our
@@ -100,7 +100,7 @@
               <a class="text-primary dark:text-slate-200" href=""
                 >Privacy Policy</a
               >
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- END: Login Form -->
@@ -135,9 +135,9 @@ import { useAuthStore } from '@/stores/authStore'
       }
     },
     mounted() {
-      onMounted(() => {
+      // onMounted(() => {
         dom("body").removeClass("main").removeClass("error-page").addClass("login");
-      });
+      // });
     },
   
     methods:{
@@ -149,7 +149,6 @@ import { useAuthStore } from '@/stores/authStore'
 
           if(response.data.success === true){
             authStore.setToken(response.data.payload?.token)
-            this.$router.push({ name: "home" });
 
           }
           console.log(response.data);

@@ -25,6 +25,11 @@ import DeliveryInvoicesCreate from "../views/DeliveryInvoices/form.vue";
 import DeliveryInvoicesEdit from "../views/DeliveryInvoices/form.vue";
 
 
+import ExpensesIndex from "../views/Expenses/index.vue";
+import ExpensesCreate from "../views/Expenses/form.vue";
+import ExpensesEdit from "../views/Expenses/form.vue";
+
+
 
 const routes = [
   {
@@ -154,6 +159,32 @@ const routes = [
         path: ":id/edit",
         name: "DeliveryInvoicesEdit",
         component: DeliveryInvoicesEdit,
+      },
+    ],
+  },
+  {
+    path: "/expenses",
+    name: "Expenses",
+    component: SideMenu,
+    redirect:{name:"ExpensesIndex"},
+    meta: {
+        middleware: authMiddleware,
+    },
+    children: [
+      {
+        path: "list/:type",
+        name: "ExpensesIndex",
+        component: ExpensesIndex,
+      },
+      {
+        path: "create",
+        name: "ExpensesCreate",
+        component: ExpensesCreate,
+      },
+      {
+        path: ":id/edit",
+        name: "ExpensesEdit",
+        component: ExpensesEdit,
       },
     ],
   },
